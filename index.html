@@ -85,13 +85,27 @@
   .seclabel{font-size:.74rem;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:var(--label);margin-bottom:22px}
 
   /* hero */
-  header.hero{padding:120px 0 90px;text-align:center;position:relative}
-  .hero h1{font-size:clamp(2.9rem,7.5vw,6rem);font-weight:300;margin:30px auto 0;max-width:15ch}
-  .hero h1 em{font-style:italic}
-  .hero .sub{font-family:'Inter';font-weight:400;font-size:clamp(1.05rem,2.2vw,1.32rem);color:var(--ink);max-width:36ch;margin:24px auto 0;line-height:1.55}
-  .hero .lede{font-size:1.1rem;color:var(--muted);max-width:54ch;margin:24px auto 0;line-height:1.7}
-  .hero .strip{width:220px;margin:34px auto 0}
-  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+  header.hero{position:relative;min-height:94vh;display:flex;align-items:center;overflow:hidden;
+    background-image:
+      linear-gradient(90deg, rgba(10,9,11,0) 0%, rgba(10,9,11,0.10) 42%, rgba(10,9,11,0.66) 78%, rgba(10,9,11,0.88) 100%),
+      linear-gradient(0deg, rgba(10,9,11,0.96) 0%, rgba(10,9,11,0) 34%),
+      url("grace-bg1.jpg");
+    background-size:cover;background-position:left center;background-repeat:no-repeat}
+  .hero .wrap{width:100%}
+  .hero-inner{max-width:580px;margin-left:auto}
+  .hero .role{font-family:'Inter';font-weight:500;letter-spacing:3.5px;text-transform:uppercase;font-size:.78rem;color:var(--seafoam)}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.6rem,9vw,7.2rem);font-weight:500;line-height:.96;margin:16px 0 0;letter-spacing:.5px}
+  .hero .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.45rem,2.8vw,2.1rem);color:var(--ink);margin:20px 0 0;line-height:1.22;max-width:20ch}
+  .hero .sub em{font-style:italic}
+  .hero .lede{font-size:1.02rem;color:#ece8f0;max-width:46ch;margin:20px 0 0;line-height:1.7}
+  .hero .strip{width:170px;margin:28px 0 0}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  @media(max-width:780px){
+    header.hero{min-height:90vh;background-position:24% top;
+      background-image:linear-gradient(0deg, rgba(10,9,11,0.97) 4%, rgba(10,9,11,0.4) 58%, rgba(10,9,11,0.22) 100%), url("grace-bg1.jpg")}
+    .hero .wrap{display:flex;align-items:flex-end;min-height:90vh;padding-bottom:54px}
+    .hero-inner{max-width:none;margin:0}
+  }
 
   .marquee-wrap{margin-top:88px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
   .marquee{display:flex;gap:0;white-space:nowrap;animation:scroll 36s linear infinite;width:max-content}
@@ -223,14 +237,16 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">AI Worldbuilder · Founder of Playhouse</span>
-    <h1>Building the future of <em class="irid-text">participatory entertainment</em>.</h1>
-    <p class="sub">Where audiences stop watching stories and start living inside them.</p>
-    <div class="strip"></div>
-    <p class="lede">Grace Ng helps brands, creators, and media companies understand how entertainment is evolving, from something we consume into worlds we inhabit. Keynote speaker, advisor, and founder building prototypes of that future.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#contact">Book a keynote</a>
-      <a class="btn btn-ghost" href="Grace_Ng_Media_Kit.pdf">Media kit ↓</a>
+    <div class="hero-inner">
+      <p class="role">AI Worldbuilder · Founder of Playhouse</p>
+      <h1>Grace Ng</h1>
+      <p class="sub">Building the future of <em class="irid-text">participatory entertainment</em>.</p>
+      <div class="strip"></div>
+      <p class="lede">Where audiences stop watching stories and start living inside them. Keynote speaker and advisor on how entertainment is shifting from gatekept storytelling to decentralized, participatory worlds.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">Book Grace</a>
+        <a class="btn btn-ghost" href="Grace_Ng_Media_Kit.pdf">Media kit ↓</a>
+      </div>
     </div>
   </div>
   <div class="marquee-wrap">
@@ -394,7 +410,7 @@
   <div class="wrap">
     <div class="seclabel reveal">About Grace</div>
     <div class="bio-wrap">
-      <div class="portrait reveal"><div class="ph">Add headshot<br>portrait.jpg</div></div>
+      <div class="portrait reveal"><img src="grace-bg1.jpg" alt="Grace Ng" style="width:100%;height:100%;object-fit:cover;object-position:32% center" /></div>
       <div class="bio-body reveal">
         <p><strong>Grace Ng is an AI Worldbuilder</strong> exploring the future of participatory entertainment, how AI, interactive storytelling, virtual characters, and audience participation are transforming media from something we watch into something we inhabit.</p>
         <p>She is the founder of <strong>Playhouse</strong>, an AI-native platform for building participatory worlds. In <strong>2022 she became one of the first indie AI filmmakers</strong>, crowdfunding an animated short through web3, co-creating it with AI, and securing the film's assets on-chain. That debut won a <strong>Film Innovation Award</strong>, and she was among the earliest NFT artists on Bitcoin with her sold-out CrashPunks collection.</p>
