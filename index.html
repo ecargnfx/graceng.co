@@ -85,14 +85,14 @@
   .seclabel{font-size:.74rem;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:var(--label);margin-bottom:22px}
 
   /* hero */
-  header.hero{position:relative;min-height:94vh;display:flex;align-items:center;overflow:hidden;
+  header.hero{position:relative;min-height:96vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;
     background-image:
-      linear-gradient(90deg, rgba(10,9,11,0) 0%, rgba(10,9,11,0.10) 42%, rgba(10,9,11,0.66) 78%, rgba(10,9,11,0.88) 100%),
-      linear-gradient(0deg, rgba(10,9,11,0.96) 0%, rgba(10,9,11,0) 34%),
+      linear-gradient(90deg, rgba(10,9,11,0) 0%, rgba(10,9,11,0) 28%, rgba(10,9,11,0.5) 56%, rgba(10,9,11,0.85) 100%),
+      linear-gradient(0deg, rgba(10,9,11,0.96) 0%, rgba(10,9,11,0) 40%),
       url("grace-bg1.jpg");
     background-size:cover;background-position:left center;background-repeat:no-repeat}
-  .hero .wrap{width:100%}
-  .hero-inner{max-width:580px;margin-left:auto}
+  .hero .wrap{width:100%;display:flex;justify-content:flex-end}
+  .hero-inner{max-width:560px;text-align:left}
   .hero .role{font-family:'Inter';font-weight:500;letter-spacing:3.5px;text-transform:uppercase;font-size:.78rem;color:var(--seafoam)}
   .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.6rem,9vw,7.2rem);font-weight:500;line-height:.96;margin:16px 0 0;letter-spacing:.5px}
   .hero .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.45rem,2.8vw,2.1rem);color:var(--ink);margin:20px 0 0;line-height:1.22;max-width:20ch}
@@ -101,13 +101,14 @@
   .hero .strip{width:170px;margin:28px 0 0}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
   @media(max-width:780px){
-    header.hero{min-height:90vh;background-position:24% top;
-      background-image:linear-gradient(0deg, rgba(10,9,11,0.97) 4%, rgba(10,9,11,0.4) 58%, rgba(10,9,11,0.22) 100%), url("grace-bg1.jpg")}
-    .hero .wrap{display:flex;align-items:flex-end;min-height:90vh;padding-bottom:54px}
-    .hero-inner{max-width:none;margin:0}
+    header.hero{min-height:92vh;justify-content:flex-end;padding-bottom:50px;background-position:30% top;
+      background-image:linear-gradient(0deg, rgba(10,9,11,0.97) 6%, rgba(10,9,11,0.45) 56%, rgba(10,9,11,0.25) 100%), url("grace-bg1.jpg")}
+    .hero .wrap{justify-content:flex-start}
+    .hero-inner{max-width:none}
   }
 
-  .marquee-wrap{margin-top:88px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee-wrap{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--border);padding:18px 0;overflow:hidden;background:rgba(10,9,11,0.45);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  @media(max-width:780px){.marquee-wrap{display:none}}
   .marquee{display:flex;gap:0;white-space:nowrap;animation:scroll 36s linear infinite;width:max-content}
   .marquee span{color:var(--faint);font-family:'Cormorant Garamond';font-style:italic;font-size:1.25rem;display:flex;align-items:center}
   .marquee span::after{content:"·";margin:0 30px;color:var(--lavender);font-style:normal}
