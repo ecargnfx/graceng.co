@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grace Ng | AI Worldbuilder</title>
+<meta name="description" content="Grace Ng is an AI Worldbuilder building the future of participatory entertainment, where audiences stop watching stories and start living inside them. Founder of Playhouse. Keynote speaker and advisor to brands, creators, and media companies." />
+<meta property="og:title" content="Grace Ng | AI Worldbuilder" />
+<meta property="og:description" content="Building the future of participatory entertainment. Founder of Playhouse. Speaker & advisor on the future of interactive storytelling, fandom, and creator-owned worlds." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a090b;
+    --surface:#151217;
+    --ink:#F1EEF2;        /* pearl neutral, brightened for contrast */
+    --muted:#CAC4D0;      /* body text, high contrast on charcoal */
+    --faint:#9C96A2;      /* small de-emphasized text */
+    --label:#C7DAD4;      /* labels, readable seafoam */
+    --rose:#E8C6C2;       /* rose quartz */
+    --seafoam:#BFD9D2;
+    --lavender:#CFC4DC;
+    --iris:#DDD6EA;
+    --jade:#AFCFC7;
+    --border:rgba(255,255,255,0.08);
+    --card:rgba(255,255,255,0.022);
+    --irid:linear-gradient(90deg,#A0DCC8 0%,#F0B9B2 25%,#C8AFE1 50%,#91D7C3 75%,#D7C8F0 100%);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-weight:400;
+    line-height:1.72;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Cormorant Garamond',serif}
+  h1,h2,h3,.display{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.18;letter-spacing:.2px}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .irid-text{
+    background:var(--irid);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  /* atmosphere: charcoal gradient + soft iridescent glows */
+  .atmos{position:fixed;inset:0;z-index:-2;background:radial-gradient(130% 90% at 50% -10%,#16121b,var(--bg) 60%)}
+  .glow{position:fixed;border-radius:50%;filter:blur(150px);z-index:-1;pointer-events:none;opacity:.16}
+  .g1{width:620px;height:620px;background:var(--lavender);top:-160px;left:-120px}
+  .g2{width:560px;height:560px;background:var(--seafoam);top:24%;right:-180px;opacity:.13}
+  .g3{width:600px;height:600px;background:var(--rose);bottom:-220px;left:24%;opacity:.10}
+  .g4{width:420px;height:420px;background:var(--jade);bottom:8%;right:6%;opacity:.10}
+
+  /* film grain */
+  .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:140px 140px}
+
+  /* accent strip */
+  .strip{height:3px;border-radius:2px;background:var(--irid);box-shadow:0 0 24px 6px rgba(200,190,220,.12)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,9,11,.6);border-bottom:1px solid var(--border)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:'Inter';font-weight:400;font-size:.92rem;letter-spacing:5px;text-transform:uppercase;display:flex;align-items:center;gap:11px;color:var(--ink)}
+  .logo .mark{width:10px;height:10px;border-radius:50%;background:var(--irid);box-shadow:0 0 14px rgba(207,196,220,.5)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .25s}
+  .nav-links a:hover{color:var(--lavender)}
+  .btn{display:inline-block;font-weight:400;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;padding:13px 26px;border-radius:999px;transition:transform .2s ease,box-shadow .25s ease,border-color .25s}
+  .btn-primary{background:var(--irid);color:#151217;box-shadow:0 0 30px rgba(200,190,220,.18)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(200,190,220,.35)}
+  .btn-ghost{border:1px solid var(--border);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--lavender);color:var(--lavender)}
+  @media(max-width:820px){.nav-links a:not(.btn){display:none}}
+
+  /* eyebrow / labels */
+  .eyebrow{display:inline-block;font-size:.74rem;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:var(--label)}
+  .seclabel{font-size:.74rem;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:var(--label);margin-bottom:22px}
+
+  /* hero */
+  header.hero{padding:120px 0 90px;text-align:center;position:relative}
+  .hero h1{font-size:clamp(2.9rem,7.5vw,6rem);font-weight:300;margin:30px auto 0;max-width:15ch}
+  .hero h1 em{font-style:italic}
+  .hero .sub{font-family:'Inter';font-weight:400;font-size:clamp(1.05rem,2.2vw,1.32rem);color:var(--ink);max-width:36ch;margin:24px auto 0;line-height:1.55}
+  .hero .lede{font-size:1.1rem;color:var(--muted);max-width:54ch;margin:24px auto 0;line-height:1.7}
+  .hero .strip{width:220px;margin:34px auto 0}
+  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+
+  .marquee-wrap{margin-top:88px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee{display:flex;gap:0;white-space:nowrap;animation:scroll 36s linear infinite;width:max-content}
+  .marquee span{color:var(--faint);font-family:'Cormorant Garamond';font-style:italic;font-size:1.25rem;display:flex;align-items:center}
+  .marquee span::after{content:"·";margin:0 30px;color:var(--lavender);font-style:normal}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* sections */
+  section{padding:100px 0;position:relative}
+  .center{text-align:center}
+  .thesis-quote{font-family:'Cormorant Garamond';font-weight:300;font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.22;max-width:20ch;margin:0 auto}
+  .thesis-quote em{font-style:italic}
+  .thesis-sub{margin:30px auto 0;font-size:1.12rem;color:var(--muted);max-width:62ch;line-height:1.72}
+
+  /* pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  @media(max-width:860px){.pillars{grid-template-columns:1fr}}
+  .pillar{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:38px 30px;position:relative;overflow:hidden;transition:transform .3s ease,border-color .3s ease}
+  .pillar:hover{transform:translateY(-6px);border-color:rgba(207,196,220,.4)}
+  .pillar .pn{font-family:'Cormorant Garamond';font-style:italic;font-size:2.4rem;line-height:1;color:var(--lavender)}
+  .pillar h3{font-family:'Cormorant Garamond';font-size:1.6rem;font-weight:400;margin:14px 0 12px}
+  .pillar p{color:var(--muted);font-size:1rem;line-height:1.65}
+  .pillar .strip{width:46px;margin-top:18px}
+
+  /* feature / playhouse */
+  .feature{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  @media(max-width:860px){.feature{grid-template-columns:1fr;gap:34px}}
+  .feature h2{font-size:clamp(2.2rem,4.4vw,3.2rem);font-weight:300;margin:8px 0 20px}
+  .feature p{color:var(--muted);font-size:1.04rem;margin-bottom:16px}
+  .feature p strong{color:var(--ink);font-weight:400}
+  .play-card{aspect-ratio:4/3.3;border-radius:20px;border:1px solid var(--border);background:
+    radial-gradient(100% 100% at 0 0,rgba(232,198,194,.16),transparent 55%),
+    radial-gradient(100% 100% at 100% 100%,rgba(191,217,210,.18),transparent 55%),
+    var(--surface);
+    position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .play-card .ring{position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+  .play-card .r1{width:80%;height:80%}.play-card .r2{width:55%;height:55%}.play-card .r3{width:30%;height:30%}
+  .play-card .core{width:74px;height:74px;border-radius:50%;background:var(--irid);box-shadow:0 0 60px rgba(207,196,220,.5);animation:breathe 6s ease-in-out infinite}
+  @keyframes breathe{50%{transform:scale(1.14)}}
+  .play-card .label{position:absolute;bottom:26px;left:28px;font-family:'Cormorant Garamond';font-size:1.5rem}
+  .play-card .label small{display:block;color:var(--faint);font-family:'Inter';font-size:.66rem;letter-spacing:3px;text-transform:uppercase;margin-top:4px}
+
+  /* work */
+  .work{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  @media(max-width:760px){.work{grid-template-columns:1fr}}
+  .work-card{border:1px solid var(--border);border-radius:18px;padding:34px;background:var(--card);transition:transform .3s,border-color .3s}
+  .work-card:hover{transform:translateY(-5px);border-color:rgba(191,217,210,.4)}
+  .work-card .kicker{font-size:.67rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--jade)}
+  .work-card h3{font-family:'Cormorant Garamond';font-size:1.7rem;font-weight:400;margin:14px 0 12px}
+  .work-card p{color:var(--muted);font-size:1rem;line-height:1.65}
+  .firstbadge{display:inline-block;margin-top:16px;font-size:.64rem;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:#151217;background:var(--irid);border-radius:999px;padding:7px 15px}
+
+  /* speaking */
+  .speak-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  @media(max-width:860px){.speak-grid{grid-template-columns:1fr;gap:36px}}
+  .talk{border-left:1px solid rgba(207,196,220,.45);padding:4px 0 4px 22px;margin-bottom:28px}
+  .talk h3{font-family:'Cormorant Garamond';font-size:1.5rem;font-weight:400;margin-bottom:4px}
+  .talk p{color:var(--muted);font-size:.95rem}
+  .topics{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .topics li{display:flex;gap:14px;align-items:flex-start;color:var(--muted);font-size:1rem}
+  .topics li::before{content:"\00B7";color:var(--seafoam)}
+  .micro{font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--label)}
+  .stages{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .stages span{font-size:.78rem;letter-spacing:1px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:8px 16px}
+
+  /* past speaking engagements */
+  .eng-intro{color:var(--muted);max-width:64ch;font-size:1.06rem;margin-bottom:30px}
+  .eng-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;margin-top:30px}
+  @media(max-width:760px){.eng-grid{grid-template-columns:1fr;gap:34px}}
+  .eng-head{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;margin-bottom:6px}
+  .eng-list{list-style:none}
+  .eng-list li{display:flex;justify-content:space-between;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--border)}
+  .eng-list li .place{color:var(--ink);font-size:1rem}
+  .eng-list li .yr{color:var(--faint);font-size:.82rem;letter-spacing:.6px;white-space:nowrap}
+
+  /* bio */
+  .bio-wrap{display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:start}
+  @media(max-width:860px){.bio-wrap{grid-template-columns:1fr}}
+  .portrait{aspect-ratio:4/5;border-radius:18px;border:1px solid var(--border);background:linear-gradient(160deg,#1c1722,#0d0c10);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .portrait .ph{color:var(--faint);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:20px}
+  .portrait::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 0,rgba(207,196,220,.18),transparent 70%)}
+  .bio-body p{color:var(--muted);font-size:1.05rem;margin-bottom:18px}
+  .bio-body strong{color:var(--ink);font-weight:400}
+  .accolades{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .accolades span{font-size:.74rem;letter-spacing:1px;color:var(--lavender);background:rgba(207,196,220,.08);border:1px solid rgba(207,196,220,.3);border-radius:999px;padding:8px 15px}
+
+  /* recognized */
+  .recognized{text-align:center}
+  .logos{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px}
+  .logos span{font-family:'Cormorant Garamond';font-size:1.15rem;color:var(--ink);opacity:.8;border:1px solid var(--border);border-radius:10px;padding:12px 22px}
+
+  /* CTA */
+  .cta-band{border:1px solid var(--border);border-radius:24px;padding:72px 40px;text-align:center;position:relative;overflow:hidden;background:
+    radial-gradient(80% 130% at 50% 0,rgba(207,196,220,.12),transparent 60%),var(--surface)}
+  .cta-band h2{font-size:clamp(2.2rem,4.8vw,3.4rem);font-weight:300;max-width:20ch;margin:14px auto 18px}
+  .cta-band p{color:var(--muted);max-width:52ch;margin:0 auto 32px;font-size:1.04rem}
+  .cta-band .strip{width:160px;margin:26px auto 0}
+
+  footer{border-top:1px solid var(--border);padding:48px 0;margin-top:40px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .foot-in .social{display:flex;gap:26px}
+  .foot-in a{color:var(--muted);font-size:.7rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .25s}
+  .foot-in a:hover{color:var(--seafoam)}
+  .fine{color:var(--faint);font-size:.68rem;letter-spacing:2px}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<div class="atmos"></div>
+<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="glow g4"></div>
+<div class="grain"></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="logo"><span class="mark"></span>Grace&nbsp;Ng</div>
+    <div class="nav-links">
+      <a href="#thesis">Thesis</a>
+      <a href="#pillars">Ideas</a>
+      <a href="#playhouse">Playhouse</a>
+      <a href="#speaking">Speaking</a>
+      <a href="#engagements">Stages</a>
+      <a href="#about">About</a>
+      <a class="btn btn-primary" href="#contact">Book Grace</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">AI Worldbuilder · Founder of Playhouse</span>
+    <h1>Building the future of <em class="irid-text">participatory entertainment</em>.</h1>
+    <p class="sub">Where audiences stop watching stories and start living inside them.</p>
+    <div class="strip"></div>
+    <p class="lede">Grace Ng helps brands, creators, and media companies understand how entertainment is evolving, from something we consume into worlds we inhabit. Keynote speaker, advisor, and founder building prototypes of that future.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">Book a keynote</a>
+      <a class="btn btn-ghost" href="Grace_Ng_Media_Kit.pdf">Media kit ↓</a>
+    </div>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>Interactive Storytelling</span><span>Participatory Worlds</span><span>The Worldbuilder Economy</span><span>Fandom over Followers</span><span>AI &amp; the Future of Media</span><span>Creator-Owned IP</span>
+      <span>Interactive Storytelling</span><span>Participatory Worlds</span><span>The Worldbuilder Economy</span><span>Fandom over Followers</span><span>AI &amp; the Future of Media</span><span>Creator-Owned IP</span>
+    </div>
+  </div>
+</header>
+
+<section id="thesis" class="center">
+  <div class="wrap reveal">
+    <div class="seclabel">The Thesis</div>
+    <p class="thesis-quote">Entertainment is shifting from <em class="irid-text">gatekept</em> storytelling to <em class="irid-text">decentralized</em>, participatory worlds. The future belongs to worldbuilders.</p>
+    <p class="thesis-sub">For a century, a handful of studios and platforms decided what got made and who got seen. That gatekeeping is ending. Power is shifting to creators and communities, audiences are becoming participants and co-owners, and AI makes building entire worlds possible for the first time. The next Disney won't be a studio that publishes content. It will be a creator, brand, or community that operates a world people live inside. Grace researches and builds that shift, and helps organizations get there first.</p>
+  </div>
+</section>
+
+<section id="pillars" class="center" style="padding-top:20px">
+  <div class="wrap">
+    <div class="seclabel reveal">What Grace Speaks &amp; Advises On</div>
+    <div class="pillars" style="text-align:left">
+      <div class="pillar reveal"><div class="pn">01</div><h3>The Future of Entertainment</h3><p>How AI is rewriting creation, distribution, and participation, and what becomes possible only because AI exists.</p><div class="strip"></div></div>
+      <div class="pillar reveal"><div class="pn">02</div><h3>The Rise of Participatory Worlds</h3><p>Why audiences increasingly want to co-create rather than consume, and how fandom is replacing viewership.</p><div class="strip"></div></div>
+      <div class="pillar reveal"><div class="pn">03</div><h3>The Worldbuilder Economy</h3><p>How creators, brands, and media companies become operators of worlds, not publishers of content.</p><div class="strip"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="playhouse">
+  <div class="wrap">
+    <div class="feature">
+      <div class="reveal">
+        <span class="eyebrow">The Build</span>
+        <h2 class="serif">Playhouse</h2>
+        <p><strong>An AI-native platform for building participatory worlds.</strong> A virtual theater where artists and storytellers create 3D animated worlds and become their own studio, so anyone can build the next great entertainment universe without a Hollywood budget.</p>
+        <p>Grace doesn't just forecast the future of entertainment, she builds working prototypes of it. Playhouse is where the thesis becomes a product: more play, more imagination, and human artistry that flourishes in the age of AI.</p>
+        <a class="btn btn-ghost" href="#contact" style="margin-top:10px">Partner or invest →</a>
+      </div>
+      <div class="play-card reveal">
+        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+        <div class="core"></div>
+        <div class="label serif">Playhouse<small>Build worlds, not content</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="seclabel reveal">Selected Work: A Track Record of Firsts</div>
+    <div class="work">
+      <div class="work-card reveal">
+        <div class="kicker">AI Film · Web3 · 2022</div>
+        <h3>CrashPunks: The Animated Series</h3>
+        <p>An award-winning animated short set in a cyberpunk world, co-created with AI, crowdfunded through NFTs, with film assets secured on Bitcoin. The first project of its kind, extended into AR fashion, games, and worldbuilding.</p>
+        <span class="firstbadge">First indie AI filmmaker, 2022</span>
+      </div>
+      <div class="work-card reveal">
+        <div class="kicker">On-Chain Art</div>
+        <h3>CrashPunks NFT Collection</h3>
+        <p>One of the earliest NFT art collections on Bitcoin, a sold-out 9K collection secured via Stacks, with a collector community that became one of the first DAOs on Bitcoin. Original IP now expanding into the metaverse.</p>
+      </div>
+      <div class="work-card reveal">
+        <div class="kicker">Brain-Computer Art</div>
+        <h3>BrainPaint / MindPaint</h3>
+        <p>Interactive brain-art interfaces that turn a viewer's mental state into living paintings, an early experiment in making audiences participants in the work. Exhibited at MIT, Stanford, China Fashion Week, Shanghai Tower, Dubai &amp; Singapore.</p>
+      </div>
+      <div class="work-card reveal">
+        <div class="kicker">In Progress</div>
+        <h3>Music &amp; Interactive Releases</h3>
+        <p>Ongoing work at the edge of AI filmmaking, interactive music, and immersive storytelling, continuing a 12-year obsession with turning passive audiences into active participants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="speaking">
+  <div class="wrap">
+    <div class="seclabel reveal">Speaking</div>
+    <div class="speak-grid">
+      <div class="reveal">
+        <div class="talk">
+          <h3>The End of Passive Entertainment</h3>
+          <p>Signature keynote: why every brand, creator, and studio will become a worldbuilder.</p>
+        </div>
+        <div class="talk">
+          <h3>What Comes After Social Media</h3>
+          <p>From followers to fandoms, from feeds to worlds: the next platform shift in entertainment.</p>
+        </div>
+        <div class="talk">
+          <h3>How Brands Become Worlds</h3>
+          <p>Why audiences become participants, and how organizations stay relevant to the next generation.</p>
+        </div>
+        <p class="micro" style="margin-top:20px">Keynote · Fireside · Workshop · Executive advisory · Worldwide &amp; virtual</p>
+      </div>
+      <div class="reveal">
+        <ul class="topics">
+          <li>How is AI changing entertainment, and what becomes possible because of it?</li>
+          <li>How do we build fandom instead of followers?</li>
+          <li>What happens when audiences become participants?</li>
+          <li>How do brands and studios compete with creators?</li>
+          <li>What does creator-owned IP mean for the future of media?</li>
+        </ul>
+        <p class="micro" style="margin-top:30px;margin-bottom:6px">Selected stages, past &amp; present</p>
+        <div class="stages">
+          <span>The White House</span><span>United Nations</span><span>MIT</span><span>Stanford</span><span>Slush</span><span>CeBIT</span><span>NFT.NYC</span><span>AI on the Lot</span><span>AWE XR</span><span>Singularity University</span><span>Wharton</span><span>China Fashion Week</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engagements">
+  <div class="wrap">
+    <div class="seclabel reveal">Past Speaking Engagements</div>
+    <p class="eng-intro reveal">A track record across the world's stages: from the White House and the United Nations to Slush, CeBIT, and the frontier of AI, web3, and XR.</p>
+    <div class="reveal" style="margin-bottom:14px">
+      <p class="micro" style="margin-bottom:12px">Recent · AI, web3 &amp; XR</p>
+      <div class="stages">
+        <span>NFT.NYC</span><span>NFT LA</span><span>Web3 Week</span><span>AI on the Lot</span><span>AWE XR</span><span>VRARA</span>
+      </div>
+    </div>
+    <div class="eng-grid">
+      <div class="eng-col reveal">
+        <div class="eng-head">Conferences &amp; Festivals</div>
+        <ul class="eng-list">
+          <li><span class="place">WISE</span><span class="yr">Beijing · 2019</span></li>
+          <li><span class="place">EUC</span><span class="yr">Nicosia · 2019</span></li>
+          <li><span class="place">CeBIT</span><span class="yr">Hanover · 2018</span></li>
+          <li><span class="place">Slush</span><span class="yr">Shanghai · 2018</span></li>
+          <li><span class="place">Lean In China</span><span class="yr">Beijing · 2018</span></li>
+          <li><span class="place">IMI Festival</span><span class="yr">Singapore · 2017</span></li>
+          <li><span class="place">Future 2050</span><span class="yr">Hangzhou · 2017</span></li>
+          <li><span class="place">Lean Startup Conference</span><span class="yr">San Francisco · 2014</span></li>
+          <li><span class="place">United Nations</span><span class="yr">New York · 2014</span></li>
+          <li><span class="place">Searchlove</span><span class="yr">San Diego · 2014</span></li>
+          <li><span class="place">UX Fest</span><span class="yr">Boston · 2013</span></li>
+          <li><span class="place">The White House</span><span class="yr">Washington DC · 2012</span></li>
+        </ul>
+      </div>
+      <div class="eng-col reveal">
+        <div class="eng-head">Universities &amp; Institutions</div>
+        <ul class="eng-list">
+          <li><span class="place">The Wharton School, UPenn</span><span class="yr">Guest lecture</span></li>
+          <li><span class="place">Singularity University</span><span class="yr">Guest lecture</span></li>
+          <li><span class="place">Princeton University</span><span class="yr">Guest lecture</span></li>
+          <li><span class="place">MIT</span><span class="yr">Talk &amp; exhibition</span></li>
+          <li><span class="place">Stanford University</span><span class="yr">Talk &amp; exhibition</span></li>
+          <li><span class="place">Barnard College</span><span class="yr">Guest lecture</span></li>
+          <li><span class="place">New York University</span><span class="yr">Guest lecture</span></li>
+          <li><span class="place">Parsons School of Design</span><span class="yr">Guest lecture</span></li>
+          <li><span class="place">Xi'an Academy of Fine Arts</span><span class="yr">Guest lecture</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="seclabel reveal">About Grace</div>
+    <div class="bio-wrap">
+      <div class="portrait reveal"><div class="ph">Add headshot<br>portrait.jpg</div></div>
+      <div class="bio-body reveal">
+        <p><strong>Grace Ng is an AI Worldbuilder</strong> exploring the future of participatory entertainment, how AI, interactive storytelling, virtual characters, and audience participation are transforming media from something we watch into something we inhabit.</p>
+        <p>She is the founder of <strong>Playhouse</strong>, an AI-native platform for building participatory worlds. In <strong>2022 she became one of the first indie AI filmmakers</strong>, crowdfunding an animated short through web3, co-creating it with AI, and securing the film's assets on-chain. That debut won a <strong>Film Innovation Award</strong>, and she was among the earliest NFT artists on Bitcoin with her sold-out CrashPunks collection.</p>
+        <p>Her work has been exhibited at <strong>MIT, Stanford, China Fashion Week, Shanghai Tower, Dubai, and Singapore</strong>, and she has spoken at the <strong>White House, the United Nations,</strong> and conferences worldwide. She has been named a <strong>World Economic Forum Global Shaper</strong>, a TimeOut Mover &amp; Shaker, and a Tatler Asia Leader of Tomorrow.</p>
+        <p>Previously a tech entrepreneur and VC, she co-founded Lean Startup Machine and Javelin, training 200,000+ founders across 64 countries. Today she advises brands, creators, and media companies on how audiences are evolving from consumers into participants, and builds the tools to get them there.</p>
+        <div class="accolades">
+          <span>First indie AI filmmaker, 2022</span><span>Award-winning director</span><span>WEF Global Shaper</span><span>Tatler Leaders of Tomorrow</span><span>Early Bitcoin NFT artist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recognized">
+  <div class="wrap reveal">
+    <div class="seclabel">Featured &amp; Recognized By</div>
+    <div class="logos">
+      <span>Forbes</span><span>Inc.</span><span>Entrepreneur</span><span>The White House</span><span>United Nations</span><span>World Economic Forum</span><span>Tatler Asia</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="cta-band">
+      <div class="seclabel" style="color:var(--seafoam)">Work With Grace</div>
+      <h2 class="serif">Bring the future of entertainment into the room.</h2>
+      <p>For keynotes, advisory, partnerships, and press, or to talk about Playhouse, let's connect.</p>
+      <div class="hero-cta" style="justify-content:center;margin-top:0">
+        <a class="btn btn-primary" href="mailto:gracenfx@gmail.com?Subject=Booking%20Grace%20Ng">Email Grace</a>
+        <a class="btn btn-ghost" href="Grace_Ng_Media_Kit.pdf">Media kit ↓</a>
+      </div>
+      <div class="strip"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="logo"><span class="mark"></span>Grace&nbsp;Ng</div>
+    <div class="social">
+      <a href="https://linkedin.com/in/nggrace" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/uxceo" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="https://instagram.com/uxceo" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:gracenfx@gmail.com">Email</a>
+    </div>
+    <div class="fine">© Grace Ng <span id="yr"></span> · AI Worldbuilder</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
